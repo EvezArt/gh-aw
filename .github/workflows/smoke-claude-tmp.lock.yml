@@ -26,18 +26,20 @@ jobs:
     steps:
         - run: |
             echo "pre activation"
+    outputs:
+      activated: ${{ 'true' }}
 
   activation:
     needs: pre_activation
-    if: always() && true
+    if: always() && !cancelled() && (!needs.pre_activation.result || needs.pre_activation.outputs.activated == 'true')
     runs-on: ubuntu-slim
     steps:
         - run: |
             echo "activation"
 
   agent:
-    needs: activation
-    if: always() && true
+    needs: ["pre_activation", "activation"]
+    if: always() && !cancelled() && (!needs.pre_activation.result || needs.pre_activation.outputs.activated == 'true')
     runs-on: ubuntu-slim
     steps:
         - run: |
