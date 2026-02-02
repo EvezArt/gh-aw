@@ -106,7 +106,8 @@ function createMCPServer(options = {}) {
   for (const tool of toolsWithHandlers) {
     // Check if this is a dispatch_workflow tool (has _workflow_name metadata)
     // These tools are dynamically generated with workflow-specific names
-    const isDispatchWorkflowTool = !!tool._workflow_name;
+    // The _workflow_name should be a non-empty string
+    const isDispatchWorkflowTool = tool._workflow_name && typeof tool._workflow_name === "string" && tool._workflow_name.length > 0;
 
     if (isDispatchWorkflowTool) {
       logger.debug(`Found dispatch_workflow tool: ${tool.name} (_workflow_name: ${tool._workflow_name})`);
@@ -120,7 +121,9 @@ function createMCPServer(options = {}) {
     } else {
       // Check if regular tool is enabled in configuration
       if (!enabledTools.has(tool.name)) {
-        logger.debug(`Skipping tool ${tool.name} - not enabled in config`);
+        // Log tool metadata to help diagnose registration issues
+        const toolMeta = tool._workflow_name !== undefined ? ` (_workflow_name: ${JSON.stringify(tool._workflow_name)})` : "";
+        logger.debug(`Skipping tool ${tool.name}${toolMeta} - not enabled in config (tool has ${Object.keys(tool).length} properties: ${Object.keys(tool).join(", ")})`);
         continue;
       }
     }
