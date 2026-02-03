@@ -5,11 +5,13 @@ sidebar:
   order: 600
 ---
 
-GitHub Agentic Workflows use AI [coding agents](/gh-aw/reference/glossary/#engine) to interpret and execute natural language instructions. Each coding agent has unique capabilities and configuration options.
+GitHub Agentic Workflows use [AI Engines](/gh-aw/reference/glossary/#engine) (normally a coding agent) to interpret and execute natural language instructions. Each coding agent has unique capabilities and configuration options.
 
 ## Using Copilot CLI
 
-[GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli) is the default AI [coding agent engine](/gh-aw/reference/glossary/#engine).
+[GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli) is the default AI engine.
+
+To use Copilot CLI with GitHub Agentic Workflows:
 
 1. Copilot CLI is the default. You can optionally request the use of of the Copilot CLI in your workflow frontmatter:
 
@@ -32,8 +34,6 @@ GitHub Agentic Workflows use AI [coding agents](/gh-aw/reference/glossary/#engin
    ```bash wrap
    gh aw secrets set COPILOT_GITHUB_TOKEN --value "<your-github-pat>"
    ```
-
-You **must** have "Public repositories" selected; otherwise, you will not have access to the Copilot Requests permission option.
 
 ## Using Claude Code
 
@@ -69,7 +69,19 @@ You **must** have "Public repositories" selected; otherwise, you will not have a
    gh aw secrets set OPENAI_API_KEY --value "<your-openai-api-key>"
    ```
 
-## Engine Environment Variables
+## Extended Coding Agent Configuration
+
+Workflows can specify extended configuration for the coding agent:
+
+```yaml wrap
+engine:
+  id: copilot
+  version: latest                       # defaults to latest
+  model: gpt-5                          # defaults to claude-sonnet-4
+  args: ["--add-dir", "/workspace"]     # custom CLI arguments
+```
+
+### Engine Environment Variables
 
 All engines support custom environment variables through the `env` field:
 
@@ -84,17 +96,7 @@ engine:
 
 Environment variables can also be defined at workflow, job, step, and other scopes. See [Environment Variables](/gh-aw/reference/environment-variables/) for complete documentation on precedence and all 13 env scopes.
 
-## Extended Coding Agent Configuration
-
-Workflows can specify extended configuration for the coding agent:
-
-```yaml wrap
-engine:
-  id: copilot
-  version: latest                       # defaults to latest
-  model: gpt-5                          # defaults to claude-sonnet-4
-  args: ["--add-dir", "/workspace"]     # custom CLI arguments
-```
+### Engine Command-Line Arguments
 
 All engines support custom command-line arguments through the `args` field, injected before the prompt:
 
