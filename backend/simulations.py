@@ -1,4 +1,5 @@
 import numpy as np
+
 def run_simulation(scenario, params):
     # Stub Monte Carlo
     results = []
