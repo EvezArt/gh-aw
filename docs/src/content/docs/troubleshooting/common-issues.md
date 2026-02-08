@@ -193,22 +193,7 @@ tools:
 
 ### Write Operations Fail
 
-Grant required permissions in the `permissions:` section or use safe-outputs (recommended):
-
-```yaml wrap
-# Direct write
-permissions:
-  contents: read
-  issues: write
-  pull-requests: write
-
-# Safe-outputs (recommended)
-permissions:
-  contents: read
-safe-outputs:
-  create-issue:
-  add-comment:
-```
+Use safe outputs, or ask for new safe output types if needed.
 
 ### Safe Outputs Not Creating Issues
 
@@ -263,6 +248,7 @@ safe-outputs:
 ```
 
 **Reserved field names to avoid**:
+
 - `repository` (REPOSITORY type - not supported via API)
 
 If a field already exists with an unsupported type, delete it in the GitHub Projects UI and recreate it with a different name.
