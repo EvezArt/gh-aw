@@ -89,21 +89,25 @@ In this step, you should adjust the report to assess something you're having tro
 
 To customize it now:
 
-1. Edit the workflow markdown file located at `.github/workflows/daily-repo-status.md` in your repository.
+1. Open the workflow markdown file located at `.github/workflows/daily-repo-status.md` in your repository.
 
-2. Regenerate the workflow YAML by running:
+2. Edit the section "What to include" to list things you are having trouble with regularly in your repository.
+
+3. Regenerate the workflow YAML by running:
 
    ```bash
    gh aw compile
    ```
 
-3. Commit and push to your repository.
+4. Commit and push to your repository.
 
-4. Optionally trigger another run by running:
+5. Optionally trigger another run by running:
 
    ```bash
    gh aw run daily-repo-status
    ```
+
+After waiting for the workflow to complete, check the new issue created with your updated report!
 
 ## What's next?
 
