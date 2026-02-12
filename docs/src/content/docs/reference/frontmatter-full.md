@@ -2599,6 +2599,12 @@ safe-outputs:
     # (optional)
     auto-merge: true
 
+    # Base branch for the pull request. Defaults to the workflow's branch
+    # (github.ref_name) if not specified. Useful for cross-repository PRs targeting
+    # non-default branches (e.g., 'vnext', 'release/v1.0').
+    # (optional)
+    base-branch: "example-value"
+
     # Controls whether AI-generated footer is added to the pull request. When false,
     # the visible footer content is omitted but XML markers (workflow-id, tracker-id,
     # metadata) are still included for searchability. Defaults to true.
