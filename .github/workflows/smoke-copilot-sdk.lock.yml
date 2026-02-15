@@ -28,7 +28,7 @@
 #     - shared/gh.md
 #     - shared/reporting.md
 #
-# frontmatter-hash: 86c94f37a2e64a1c007c3d4ada8687dd4300030389cd5cdae301987f16f92355
+# frontmatter-hash: 2fe2e88f7c0c250f4af942d0e27adb3a94debf0c772c24b5c18ec17f16b93602
 
 name: "Smoke Copilot SDK"
 "on":

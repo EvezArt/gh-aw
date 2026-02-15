@@ -23,7 +23,7 @@
 #
 # Test temporary ID functionality for issue chaining and cross-references
 #
-# frontmatter-hash: 1d964123d1f85cd88f814081530830bfa87422bffc225bf37ee8d5b0831137e8
+# frontmatter-hash: 1ac0f0994d86d5299ca68203c0ea88afa6541831d6b5d7f5d32e5dfb892e729c
 
 name: "Smoke Temporary ID"
 "on":
