@@ -1,0 +1,11 @@
+# gh-aw activation config
+# Controls pre_activation gate behavior for all workflows
+
+activation:
+  mode: grace
+  required_secrets:
+    - OPENAI_API_KEY
+  on_missing_secret: skip
+  allow_graceful_skip: true
+
+# Powered by EVEZ github.com/EvezArt/evez-os

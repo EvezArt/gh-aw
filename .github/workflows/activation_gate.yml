@@ -1,0 +1,28 @@
+name: Activation Gate
+# Reusable workflow - call from other workflows
+# Grace mode: missing OPENAI_API_KEY = skip, not fail
+
+on:
+  workflow_call:
+    outputs:
+      ready:
+        description: Whether the environment is ready
+        value: ${{ jobs.check.outputs.ready }}
+
+jobs:
+  check:
+    name: pre_activation
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.gate.outputs.ready }}
+    steps:
+      - name: Check activation requirements
+        id: gate
+        run: |
+          if [ -n "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "ready=true" >> $GITHUB_OUTPUT
+            echo "Activation gate PASS"
+          else
+            echo "ready=false" >> $GITHUB_OUTPUT
+            echo "Activation gate SKIP - OPENAI_API_KEY not set (grace mode)"
+          fi
